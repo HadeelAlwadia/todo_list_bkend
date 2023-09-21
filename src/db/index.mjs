@@ -1,16 +1,30 @@
-import mongoose from 'mongoose';
-const dbUrl='mongodb+srv://hadeel:hadeel2001@cluster0.h0gauas.mongodb.net/?retryWrites=true&w=majority'
+import{MongoClient} from 'mongodb'
+const dbUrl='mongodb+srv://hadeelwadia:hadeel2001@cluster0.h0gauas.mongodb.net/?retryWrites=true&w=majority'
+const dbName='todo_list'
+const client=new MongoClient(dbUrl)
+const db = client.db(dbName);
+
+const collection = db.collection('todos');
+
 const connectInDB= async _=>{
 try{
-    await mongoose.connect(dbUrl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }) 
-console.log('succfull conacnt with db')
-}catch(error){
-console.log(`error:${error.name}`)
+        await client.connect()
+         console.log('successfull conecnt with db')
+ }
+ catch(error){
+    console.log(`error:${error.name}`)
+  } 
 }
-}
-export default connectInDB;
+
+
+
+
+
+
+
+
+
+   
+export {connectInDB,collection};
 
 

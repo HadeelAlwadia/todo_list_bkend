@@ -1,9 +1,14 @@
 import express from "express";
-import connectInDB from "./src/db/index.mjs";
+import {connectInDB} from './src/db/index.mjs'
 import routes from "./src/routes/index.mjs";
-//  run Connect to MongoDB
+import bodyParser from 'body-parser'
+
+  //run Connect to MongoDB
+
 connectInDB()
 const app=express()
+// Use bodyParser middleware to parse JSON and URL-encoded bodies
+app.use(bodyParser.json());
 
 app.use('/todos',routes)
 app.listen('3000',()=>{
@@ -11,4 +16,27 @@ app.listen('3000',()=>{
 })
 
 
+
+
+  
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+  
 
